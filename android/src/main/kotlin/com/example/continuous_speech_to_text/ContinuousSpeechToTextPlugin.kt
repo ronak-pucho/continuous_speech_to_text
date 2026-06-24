@@ -245,6 +245,8 @@ class ContinuousSpeechToTextPlugin: FlutterPlugin, MethodCallHandler, EventChann
             sendEventOnMainThread("result", text)
             if (isListeningRequested) restartOnSameRecognizer(RESTART_DELAY_MS)
         }
+
+        override fun onEvent(eventType: Int, params: Bundle?) {}
     }
 
     private fun sendEventOnMainThread(event: String, data: String, errorCode: String = "") {

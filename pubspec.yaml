@@ -1,6 +1,6 @@
 name: continuous_speech_to_text
 description: "A robust Flutter plugin for continuous, uninterrupted speech-to-text recognition on Android. Bypasses standard timeouts and annoying beep sounds."
-version: 0.0.1
+version: 0.0.2
 homepage: "https://github.com/ronak-pucho/continuous_speech_to_text"
 repository: "https://github.com/ronak-pucho/continuous_speech_to_text"
 issue_tracker: "https://github.com/ronak-pucho/continuous_speech_to_text/issues"
