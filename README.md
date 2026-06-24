@@ -45,6 +45,39 @@ _speechToText.startListening(localeId: 'en-IN');
 _speechToText.stopListening();
 ```
 
+### Multiple Languages Support
+
+You can pass a specific `localeId` to `startListening` to recognize speech in different languages. This relies on the languages available on the device's Android SpeechRecognizer. Ensure the language package is downloaded on the device for offline use or accurate recognition.
+
+Examples of some common locale tags:
+- English (India): `en-IN`
+- Hindi (India): `hi-IN`
+- Bengali (India): `bn-IN`
+- Gujarati (India): `gu-IN`
+- Kannada (India): `kn-IN`
+- Malayalam (India): `ml-IN`
+- Marathi (India): `mr-IN`
+- Tamil (India): `ta-IN`
+- Telugu (India): `te-IN`
+- Punjabi (India): `pa-IN`
+- Urdu (India): `ur-IN`
+- Odia (India): `or-IN`
+- Assamese (India): `as-IN`
+- English (US): `en-US`
+- Spanish (Spain): `es-ES`
+- French (France): `fr-FR`
+- German (Germany): `de-DE`
+
+```dart
+// Start listening in Hindi
+_speechToText.startListening(localeId: 'hi-IN');
+
+// Start listening in Spanish
+_speechToText.startListening(localeId: 'es-ES');
+```
+
+You can check the full example in the `example` folder where a dropdown is implemented to switch between different languages dynamically.
+
 ## Platform Support
 * **Android**: Supported (Android 5.0+)
 * **iOS**: Not currently supported. Pull requests are welcome!

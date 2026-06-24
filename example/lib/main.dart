@@ -17,6 +17,28 @@ class _MyAppState extends State<MyApp> {
   String _recognizedText = '';
   bool _isListening = false;
   String _errorMessage = '';
+  
+  // List of some common locales
+  final List<Map<String, String>> _locales = [
+    {'name': 'English (India)', 'code': 'en-IN'},
+    {'name': 'Hindi (India)', 'code': 'hi-IN'},
+    {'name': 'Bengali (India)', 'code': 'bn-IN'},
+    {'name': 'Gujarati (India)', 'code': 'gu-IN'},
+    {'name': 'Kannada (India)', 'code': 'kn-IN'},
+    {'name': 'Malayalam (India)', 'code': 'ml-IN'},
+    {'name': 'Marathi (India)', 'code': 'mr-IN'},
+    {'name': 'Tamil (India)', 'code': 'ta-IN'},
+    {'name': 'Telugu (India)', 'code': 'te-IN'},
+    {'name': 'Punjabi (India)', 'code': 'pa-IN'},
+    {'name': 'Urdu (India)', 'code': 'ur-IN'},
+    {'name': 'Odia (India)', 'code': 'or-IN'},
+    {'name': 'Assamese (India)', 'code': 'as-IN'},
+    {'name': 'English (US)', 'code': 'en-US'},
+    {'name': 'Spanish (Spain)', 'code': 'es-ES'},
+    {'name': 'French (France)', 'code': 'fr-FR'},
+    {'name': 'German (Germany)', 'code': 'de-DE'},
+  ];
+  String _selectedLocale = 'en-IN';
 
   @override
   void initState() {
@@ -50,7 +72,7 @@ class _MyAppState extends State<MyApp> {
         _recognizedText = '';
         _errorMessage = '';
       });
-      _continuousSpeechToText.startListening(localeId: 'en-IN');
+      _continuousSpeechToText.startListening(localeId: _selectedLocale);
     }
   }
 
@@ -65,6 +87,31 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Language:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  DropdownButton<String>(
+                    value: _selectedLocale,
+                    onChanged: _isListening
+                        ? null
+                        : (String? newValue) {
+                            if (newValue != null) {
+                              setState(() {
+                                _selectedLocale = newValue;
+                              });
+                            }
+                          },
+                    items: _locales.map<DropdownMenuItem<String>>((Map<String, String> locale) {
+                      return DropdownMenuItem<String>(
+                        value: locale['code'],
+                        child: Text(locale['name']!),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
               if (_errorMessage.isNotEmpty)
                 Container(
                   padding: const EdgeInsets.all(12),
